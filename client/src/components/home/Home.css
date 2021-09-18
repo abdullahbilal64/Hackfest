@@ -1,0 +1,92 @@
+.login-body{
+    font-family: 'Poppins', sans-serif;
+    background-color: #ffdc60;
+    height: 100vh;
+}
+
+header>p{
+    font-size: 1.75em;
+    display: inline-block;
+    margin-top: 0;
+    font-weight: 600;
+}
+main{
+    margin-top: 0%;
+    text-align: center;
+}
+main>#title{
+    margin-top: 0%;
+    font-size: 3.5em;
+    margin-bottom: 0%;
+    font-weight: 500;
+}
+main>#subtitle{
+    font-size: 2.5em;
+    margin-top: 0%;
+    font-weight: 300;
+    margin-bottom: 2%;
+}
+main>#sign_in{
+    font-size: 1.25em;
+    background-color: #C85E5E;
+    color: white;
+    padding-right: 1em;
+    padding-left: 1em;
+    padding-top: 0.25em;
+    padding-bottom: 0.25em;
+    border: none;
+    border-radius: 4px;
+}
+main>#sign_in:hover{
+    background-color: #c4354d;
+}
+#conference_table{
+    width: 39%;
+    
+}
+#conference{
+    text-align: right;
+    margin-right: 10%;
+    margin-top: 0;
+}
+
+.sign-btn{
+    height: 45px;
+    text-decoration: none;
+    color:white;
+}
+.sign-btn:hover{
+    height: 45px;
+    text-decoration: none;
+    color:white;
+}
+.footer{
+    position: absolute;
+    bottom:2px;
+}
+
+@media only screen and (max-width: 600px) {
+    header{
+        display: none;
+    }
+    #title{
+     font-size: 50px !important;
+     padding-top: 10px !important;
+    }
+    #subtitle{
+        margin-top: 30px !important;
+        font-size: 25px !important;
+        font-weight: lighter;
+    }
+    .sign-btn{
+        margin-top: 60px;
+        width: 100%;
+    }
+    #conference_table{
+     display:block;
+     margin: 60px auto 0px;
+     width: 80%;
+        
+        
+    }
+}
