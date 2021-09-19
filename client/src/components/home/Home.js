@@ -2,6 +2,15 @@ import "./Home.css";
 import BgImg from "../../images/conference_table.png" 
 import {Container,Button} from "react-bootstrap"
 import {Link} from "react-router-dom";
+import axios from "axios";
+
+const authAxios  =axios.create({
+    baseURL:'http://localhost:3001/',
+    headers:{
+        Authorization:`Bearer ${localStorage.getItem('token')}`
+    }
+});
+
 const Home = () => {
     return <div className="login-body">
       <Container fluid>

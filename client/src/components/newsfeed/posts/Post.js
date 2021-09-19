@@ -1,6 +1,13 @@
 import { Container, Row, Col, ButtonGroup, Button } from "react-bootstrap";
 import ProfileImg from "../../../images/profilepic.png";
 import "./Post.css";
+import axios from "axios";
+const authAxios  =axios.create({
+  baseURL:'http://localhost:3001/',
+  headers:{
+      Authorization:`Bearer ${localStorage.getItem('token')}`
+  }
+});
 
 const Post = () => {
   return (

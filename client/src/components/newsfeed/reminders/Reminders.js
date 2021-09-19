@@ -1,4 +1,11 @@
-import "./Reminders.css"
+import "./Reminders.css";
+import axios from "axios";
+const authAxios  =axios.create({
+    baseURL:'http://localhost:3001/',
+    headers:{
+        Authorization:`Bearer ${localStorage.getItem('token')}`
+    }
+});
 const Reminders = () => {
     return <div>
         

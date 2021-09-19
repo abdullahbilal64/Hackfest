@@ -1,9 +1,16 @@
 import NavBar from "../partials/navbar/Navbar";
 import {Container,Form,Button,Row,Col} from "react-bootstrap"
 import Post from "./posts/Post"
-import Reminders from "./reminders/Reminders"
+import Reminders from "./reminders/Reminders";
+import "./Newsfeed.css";
+import axios from "axios";
+const authAxios  =axios.create({
+  baseURL:'http://localhost:3001/',
+  headers:{
+      Authorization:`Bearer ${localStorage.getItem('token')}`
+  }
+});
 
-import "./Newsfeed.css"
 const Newsfeed = () => {
   return (
     <>

@@ -2,6 +2,15 @@ import "./About.css"
 import NavBar from "../partials/navbar/Navbar"
 import {Container,Row,Col} from "react-bootstrap";
 import ProfileImg from "../../images/profilepic.png"
+import axios from "axios";
+
+const authAxios  =axios.create({
+  baseURL:'http://localhost:3001/',
+  headers:{
+      Authorization:`Bearer ${localStorage.getItem('token')}`
+  }
+});
+
 
 const About = () => {
     return <>
