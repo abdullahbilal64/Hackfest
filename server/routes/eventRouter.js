@@ -10,14 +10,18 @@ eventRouter.use(bodyParser.json());
 eventRouter.route('/')
     .get(authenticate.verifyUser,(req,res,next)=>{
             Event.find({})
-            .then(res=>{
-
+            .then(events=>{
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(events);
             })
     })
     .post(authenticate.verifyUser,(req,res,next)=>{
-            Event.create(req.body)
-            .then(res=>{
-
+            Event.create({creator:req.user._id},req.body)
+            .then(event=>{
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(event);
             })
     })
     .put(authenticate.verifyUser,(req,res,next)=>{
@@ -30,9 +34,11 @@ eventRouter.route('/')
     });
 eventRouter.route('/:id')
     .get(authenticate.verifyUser,(req,res,next)=>{
-            Event.findById(req.user._id)
-            .then(res=>{
-
+            Event.findById(req.params.id)
+            .then(event=>{
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(CloseEvent);
             })
     })
     .post(authenticate.verifyUser,(req,res,next)=>{
@@ -40,15 +46,18 @@ eventRouter.route('/:id')
             res.send('event is not valid on event');
     })
     .put(authenticate.verifyUser,(req,res,next)=>{
-            Event.findByIdAndUpdate(req.user._id,req.body)
-            .then(res=>{
-
+            Event.findByIdAndUpdate({_id:req.user._id},req.body)
+            .then(event=>{
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(event);
             })
     })
     .delete(authenticate.verifyUser,(req,res,next)=>{
             Event.findByIdAndDelete(req.user._id)
             .then(res=>{
-
+                res.statusCode = 200;
+                res.send('Deleted');
             })
     });
 

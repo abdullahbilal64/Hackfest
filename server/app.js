@@ -4,12 +4,13 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
-
+const userRouter = require('./routes/userRouter');
+const postRouter = require('./routes/postRouter');
 const mongoose = require('mongoose');
 
 var passport = require('passport');
 
-const url = 'mongodb+srv://abuzar:batch2019@cluster0.dgb9m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
+const url = 'mongodb+srv://abuzar:abuzar12345@cluster0.e14mr.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
 mongoose.connect(url,{
     autoIndex: false
 })
@@ -34,6 +35,8 @@ app.use('/images', express.static('images'));
 app.use(cors());
 
 //Define routers route
+app.use('/',userRouter);
+app.use('/post',postRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

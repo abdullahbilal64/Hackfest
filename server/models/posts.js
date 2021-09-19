@@ -8,7 +8,7 @@ var comment = new schema({
         ref: 'User'
     },
     text: {
-        type: string
+        type: String
     },
     image: [{
         type: String

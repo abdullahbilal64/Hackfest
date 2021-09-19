@@ -7,11 +7,13 @@ var authenticate = require('../authenticate');
 
 
 userRouter.use(bodyParser.json());
-userRouter.route('/')
+/*userRouter.route('/')
     .get(authenticate.verifyUser,(req,res,next)=>{
-            User.find({ })
-            .then((res)=>{
-
+            User.findById(req.user._id)
+            .then((details)=>{
+                res.statusCode = 200;
+                res.setHeader('Content-Type', 'application/json');
+                res.json(details);
             })
     })
     .post(authenticate.verifyUser,(req,res,next)=>{
@@ -28,9 +30,11 @@ userRouter.route('/')
     });
 userRouter.route('/:id')
     .get(authenticate.verifyUser,(req,res,next)=>{
-        User.findById(req.user._id)
-        .then((res)=>{
-
+        User.findById(req.params.id)
+        .then((details)=>{
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(details);
         })
     })
     .post(authenticate.verifyUser,(req,res,next)=>{
@@ -39,18 +43,22 @@ userRouter.route('/:id')
     })
     .put(authenticate.verifyUser,(req,res,next)=>{
         User.findByIdAndUpdate(req.user._id,req.body)
-        .then((res)=>{
-
+        .then((details)=>{
+            res.statusCode = 200;
+            res.setHeader('Content-Type', 'application/json');
+            res.json(details);
         })
     })
     .delete(authenticate.verifyUser,(req,res,next)=>{
         User.findByIdAndDelete(req.user._id)
-        .then((res)=>{
-
+        .then(()=>{
+            res.statusCode = 200;
+            res.send('Profile Deleted');
         })
     });
+*/
 userRouter.post('/signup', (req, res, next) => {
-        User.register(new User(req.body),
+        User.register(new User({firstname:req.body.firstname,lastname:req.body.lastname,username:req.body.username}),
             req.body.password, (err, user) => {
                 if (err) {
                     res.statusCode = 500;

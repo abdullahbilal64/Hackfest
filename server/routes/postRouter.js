@@ -5,12 +5,13 @@ var Post = require('../models/posts');
 var passport = require('passport');
 var authenticate = require('../authenticate');
 const { request } = require('express');
+const upload = require('./uploadRouter');
 
 postRouter.use(bodyParser.json());
 postRouter.route('/')
     .get(authenticate.verifyUser,(req,res,next)=>{
             Post.find({})
-            .populate('post.user')
+            .populate('from')
             .then(details=>{
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
@@ -18,8 +19,13 @@ postRouter.route('/')
             })
             .catch((err) => next(err));
     })
-    .post(authenticate.verifyUser,(req,res,next)=>{
-            Post.create(req.body)
+    .post(authenticate.verifyUser,upload.any('images'),(req,res,next)=>{
+        var Data = new Array();
+        for(let i=0;i<req.files.length;i++)
+        {
+            Data[i] = req.files[i].originalname;
+        }
+            Post.create({from:req.user._id,text:req.body.text,image:Data})
             .then(details=>{
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -36,8 +42,9 @@ postRouter.route('/')
             res.send('DELETE is not valid on Posts');
     });
 postRouter.route('/:id')
-    .get(authenticate.verifyUser,(req,res,next)=>{
-            Post.findById(req.user._id)
+    .get((req,res,next)=>{
+            Post.findById(req.params.id)
+            .populate('from')
             .then(details=>{
                 res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
@@ -58,26 +65,25 @@ postRouter.route('/:id')
     .delete(authenticate.verifyUser,(req,res,next)=>{
             Post.findByIdAndDelete(req.user._id)
             .then(res=>{
-
+                res.statusCode = 200;
+                res.send('Deleted');
             })
     });
 
 postRouter.route('/:id/comment')
     .get(authenticate.verifyUser,(req,res,next)=>{
-        Post.findById({_id: req.params.id})
-        .populate('comment.from')
-        .then(details=>{
-                res.statusCode(200);
-                res.setHeader('Content-Type', 'application/json');
-                res.json(details.comment);
-        })
-        .catch((err) => next(err));
+        res.statusCode = 500;
+        res.send('POST is not valid on Comment');
     })
-    .post(authenticate.verifyUser,(req,res,next)=>{
+    .post(authenticate.verifyUser,upload.any('images'),(req,res,next)=>{
+        var Data = new Array();
+        for(let i=0;i<req.files.length;i++)
+        {
+            Data[i] = req.files[i].originalname;
+        }
         Post.findById({_id: req.params.id})
         .then(details=>{
-            res.statusCode = 200;
-            details.comment.push(req.body.comment);
+            details.comments.push({from:req.user._id,text:req.body.text,image:Data})
             details.save().then(details=>{
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -93,6 +99,7 @@ postRouter.route('/:id/comment')
         Post.findByIdAndDelete({_id: req.params.id})
         .then(details=>{
             res.statusCode = 200;
+            res.send('Deleted');
         })
     });
 postRouter.route('/:id/comment/:cid')
@@ -109,16 +116,8 @@ postRouter.route('/:id/comment/:cid')
         res.send('POST is not valid on Comment');
     })
     .delete(authenticate.verifyUser,(req,res,next)=>{
-        Post.findById({_id: req.params.id})
-        .then(details=>{
-            res.statusCode = 200;
-            details.comment.id(req.params.cid).remove();
-            details.save().then(details=>{
-                res.statusCode = 200;
-                res.setHeader('Content-Type', 'application/json');
-                res.json(details);
-            });
-        })
+        res.statusCode = 500;
+        res.send('Delete is not valid on Comment');
     })
 
 module.exports = postRouter;

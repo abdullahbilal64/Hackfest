@@ -10,7 +10,7 @@ var user = new schema({
     lastName: {
         type: String
     },
-    employeeID: {
+    username: {
         type: String
     },
     password: {
@@ -21,10 +21,10 @@ var user = new schema({
         default: 0
     },
     department: {
-        type: string,
+        type: String,
         default: 'Un-Assigned'
     }
 });
 
 user.plugin(passportLocalMongoose);
-module.exports = mongoose.model('user', user);
+module.exports = mongoose.model('User', user);
