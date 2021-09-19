@@ -1,5 +1,6 @@
 .profilepic{
     border-radius:50%;
+    
     width: 4%;
 }
 .logo-heading{
@@ -12,3 +13,8 @@
 .nav-links{
     font-size: 1.2em;
 }
+.navbar{
+    background-color:#ffdc60 ;
+}
+
+

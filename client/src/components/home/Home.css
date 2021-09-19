@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
 .login-body{
-    font-family: 'Poppins', sans-serif;
+   
     background-color: #ffdc60;
     height: 100vh;
 }
@@ -9,6 +11,7 @@ header>p{
     display: inline-block;
     margin-top: 0;
     font-weight: 600;
+    font-family: 'Poppins', sans-serif;
 }
 main{
     margin-top: 0%;
@@ -34,7 +37,7 @@ main>#sign_in{
     padding-left: 1em;
     padding-top: 0.25em;
     padding-bottom: 0.25em;
-    border: none;
+    border: 0;
     border-radius: 4px;
 }
 main>#sign_in:hover{
@@ -51,14 +54,26 @@ main>#sign_in:hover{
 }
 
 .sign-btn{
-    height: 45px;
+    width: 150px;
+    height: 40px;
     text-decoration: none;
     color:white;
+    background-color: #C85E5E;
 }
 .sign-btn:hover{
-    height: 45px;
+    width: 10px;
+    height: 40px;
+    background-color: #c4354d;
+}
+.link:hover{
     text-decoration: none;
     color:white;
+    border:none;
+}
+.link{
+    text-decoration: none;
+    color:white;
+    border:none;
 }
 .footer{
     position: absolute;
@@ -80,7 +95,7 @@ main>#sign_in:hover{
     }
     .sign-btn{
         margin-top: 60px;
-        width: 100%;
+        
     }
     #conference_table{
      display:block;
