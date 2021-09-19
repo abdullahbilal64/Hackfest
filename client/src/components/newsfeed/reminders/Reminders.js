@@ -3,21 +3,17 @@ const Reminders = () => {
     return <div>
         
         <ul>
-            <hr/>
-        <h5>Reminders</h5>
-       <li>ul li Lorem dolor amet sit 
+           
+       <h5>Reminders</h5>
+       <li>Virtual Tombola Game on August 26 
        </li>
-       <li>ul li Lorem dolor amet sit 
+       <li>Among Us Night on September 1
        </li>
-       <li>ul li Lorem dolor amet sit 
+       <li>Remotecon Rocket League Tournament on September 3 
        </li>
-       <li>ul li Lorem dolor amet sit 
-       </li>
-       <li>ul li Lorem dolor amet sit 
-       </li>
-       <li>ul li Lorem dolor amet sit 
-       </li>
-       <hr/>
+      
+       
+       
     </ul>
    </div>
 }

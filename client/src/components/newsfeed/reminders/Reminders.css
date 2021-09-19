@@ -12,9 +12,11 @@ ul {
     align-items: center;
     padding: 12px 0;
     box-sizing: border-box;
-    background-color:  rgb(250, 248, 245);
-    margin:5px 0px 5px;
-    border-radius: 0.5em;
+    background-color:  #Ffffff;
+    border:1px solid #c1c1c9;
+    border-radius: 1em;
+    margin-top:1em;
+    margin-bottom:1em;
   }
   
   
@@ -28,7 +30,7 @@ ul {
     padding-right: 12px;
     font-variant-numeric: tabular-nums;
     align-self: flex-start;
-    background-image: linear-gradient(to bottom, aquamarine, orangered);
+    background-image: linear-gradient(to bottom, #ffdc60, #ffdc60);
     background-attachment: fixed;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
@@ -37,7 +39,7 @@ ul {
   
   /* Element separation */
   li + li {
-    border-top: 1px solid rgba(255,255,255,0.2);
+    /* border-top: 1px solid rgba(255,255,255,0.2); */
   }
   
   

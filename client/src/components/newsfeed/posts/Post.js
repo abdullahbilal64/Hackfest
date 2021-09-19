@@ -1,17 +1,17 @@
 import { Container, Row, Col, ButtonGroup, Button } from "react-bootstrap";
-import ProfileImg from "../../../images/profilepic.png";
+
 import "./Post.css";
 
-const Post = () => {
+const Post = (props) => {
   return (
     <div className="mt-5 post-container">
       <Row>
         <Col>
-          <img src={ProfileImg} alt="logo" width="100%" height="300px" />
+          <img src={props.img} alt="logo" width="100%" height="300px" className="post-img"/>
         </Col>
         <Col className="pt-5 align-items-center h-100">
-          <h6>Abdullah Bilal</h6>
-          <p>I tell myself jokes and then I laugh. </p>
+          <h6>{props.name}</h6>
+          <p>{props.desc}</p>
           <ButtonGroup
             aria-label="Basic example "
             className="btn-group"

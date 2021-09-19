@@ -5,9 +5,9 @@ import Logo from "../../../images/logo.png";
 import "./Navbar.css"
 const NavBar = () => {
   return (
-    <Navbar bg="light" variant="light">
+    <Navbar className="navbar" variant="light">
       <Container>
-      <img src={Logo} alt="logo" width="40px" />
+      {/* <img src={Logo} alt="logo" width="40px" /> */}
         <Navbar.Brand href="#home" className="logo-heading">
         RemoteCon
         </Navbar.Brand>
