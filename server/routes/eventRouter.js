@@ -6,7 +6,6 @@ var passport = require('passport');
 var authenticate = require('../authenticate');
 
 eventRouter.use(bodyParser.json());
-eventRouter.use(bodyParser.json());
 eventRouter.route('/')
     .get(authenticate.verifyUser,(req,res,next)=>{
             Event.find({})
@@ -17,7 +16,7 @@ eventRouter.route('/')
             })
     })
     .post(authenticate.verifyUser,(req,res,next)=>{
-            Event.create({creator:req.user._id},req.body)
+            Event.create({creator:req.user._id,eventName:req.body.eventName,eventLocation:req.body.eventLocation,Description:req.body.Description})
             .then(event=>{
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -35,10 +34,11 @@ eventRouter.route('/')
 eventRouter.route('/:id')
     .get(authenticate.verifyUser,(req,res,next)=>{
             Event.findById(req.params.id)
+            .populate('creator')
             .then(event=>{
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
-                res.json(CloseEvent);
+                res.json(event);
             })
     })
     .post(authenticate.verifyUser,(req,res,next)=>{
@@ -46,7 +46,7 @@ eventRouter.route('/:id')
             res.send('event is not valid on event');
     })
     .put(authenticate.verifyUser,(req,res,next)=>{
-            Event.findByIdAndUpdate({_id:req.user._id},req.body)
+            Event.findByIdAndUpdate(req.params.id,{eventName:req.body.eventName,eventLocation:req.body.eventLocation,Description:req.body.Description})
             .then(event=>{
                 res.statusCode = 200;
                 res.setHeader('Content-Type', 'application/json');
@@ -54,8 +54,8 @@ eventRouter.route('/:id')
             })
     })
     .delete(authenticate.verifyUser,(req,res,next)=>{
-            Event.findByIdAndDelete(req.user._id)
-            .then(res=>{
+            Event.findByIdAndRemove(req.params.id)
+            .then(()=>{
                 res.statusCode = 200;
                 res.send('Deleted');
             })

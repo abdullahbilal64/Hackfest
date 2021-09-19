@@ -9,14 +9,15 @@ var event = new schema({
     },
     eventName: {
         type: String,
-        default: 'Remotebase Event'
+        required:true
     },
     eventLocation: {
         type: String,
-        default: 'Online'
+        required:true
     },
     Description: {
-        type: String
+        type: String,
+        required:true
     }
 });
 

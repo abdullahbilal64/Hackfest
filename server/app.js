@@ -6,6 +6,7 @@ var logger = require('morgan');
 const cors = require('cors');
 const userRouter = require('./routes/userRouter');
 const postRouter = require('./routes/postRouter');
+const eventRouter = require('./routes/eventRouter');
 const mongoose = require('mongoose');
 
 var passport = require('passport');
@@ -37,6 +38,7 @@ app.use(cors());
 //Define routers route
 app.use('/',userRouter);
 app.use('/post',postRouter);
+app.use('/event',eventRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
