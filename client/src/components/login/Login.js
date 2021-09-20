@@ -1,6 +1,7 @@
 import {Form, Button, Container, Navbar,Nav} from "react-bootstrap";
 import Logo from "../../images/logo.png";
 import {useState} from "react";
+import "./Login.css"
 
 const Login = () => {
   const [email,setEmail] = useState();
@@ -39,7 +40,7 @@ const Login = () => {
       />
     </Form.Group>
     <Button variant="warning" type="submit">
-      Submit
+    <a href="/newsfeed" className="submit-link">Submit</a>
     </Button>
   </Form>
   </Container> </>
